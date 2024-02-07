@@ -1,9 +1,14 @@
 const palavras = [
-  { palavra: "abacaxi", dica: "Fruta com coroa" },
-  { palavra: "elefante", dica: "Maior animal terrestre do mundo" },
-  { palavra: "computador", dica: "Me usam para programar" },
-  { palavra: "esmeralda", dica: "Minerio do Minecraft" },
-  { palavra: "sorvete", dica: "Bom no Calor" },
+  { palavra: "fato", dica: "Algo incontestável" },
+  { palavra: "casa", dica: "Onde pessoas moram" },
+  { palavra: "cerne", dica: "Bom pra um churrasco" },
+  { palavra: "amigo", dica: "Sempre está com você" },
+  { palavra: "tempo", dica: "Sempre está correndo" },
+  { palavra: "medo", dica: "Sentimento ou fobia" },
+  { palavra: "tudo", dica: "Contrario de nada" },
+  { palavra: "nada", dica: "Contrario de tudo" },
+  { palavra: "área", dica: "Um espaço demarcado" },
+  { palavra: "doce", dica: "Bom pra sobremesa" },
 ];
 
 export default function pegarDica() {
