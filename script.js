@@ -1,4 +1,4 @@
-import pegarDica from "./words.js";
+import pegarDica from "./palavras.js";
 
 const contentBtns = document.querySelector(".btns");
 const contentvidas = document.querySelector(".vidas");
