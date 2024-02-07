@@ -1,7 +1,7 @@
 import pegarDica from "./palavras.js";
 
 const contentBtns = document.querySelector(".btns");
-const contentvidas = document.querySelector(".vidas");
+const divVida = document.querySelector(".vidas");
 const tracos = document.querySelector(".tracos");
 const img = document.querySelector("img");
 const conteudodicas = document.querySelector(".dica");
@@ -13,7 +13,7 @@ init();
 
 function init() {
   vidas = 6
-  contentvidas.textContent = "vidas: "+String(vidas)
+  divVida.textContent = "vidas: "+String(vidas)
 
   geradorPerguntas();
   geradorButoes();
@@ -27,20 +27,20 @@ function geradorPerguntas() {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
-  Array.from(palavraComAcento).forEach((letter) => {
+  Array.from(palavraComAcento).forEach((palavra) => {
     const span = document.createElement("span");
 
     span.textContent = "_";
-    span.setAttribute("palavra", letter.toUpperCase());
+    span.setAttribute("palavra", palavra.toUpperCase());
     tracos.appendChild(span);
   });
 
   conteudodicas.textContent = `Dica: ${dica}`;
 }
 
-function wrongAnswer() {
+function respostaErrada() {
   vidas = vidas-1;
-  contentvidas.textContent ="vidas: "+String(vidas)
+  divVida.textContent ="vidas: "+String(vidas)
 
   if (vidas === 0) {
     setTimeout(() => {
@@ -50,13 +50,13 @@ function wrongAnswer() {
   }
 }
 
-function verifyLetter(letter) {
-  const arr = document.querySelectorAll(`[palavra="${letter}"]`);
+function verificarPalavra(palavra) {
+  const arr = document.querySelectorAll(`[palavra="${palavra}"]`);
 
-  if (!arr.length) wrongAnswer();
+  if (!arr.length) respostaErrada();
 
   arr.forEach((e) => {
-    e.textContent = letter;
+    e.textContent = palavra;
   });
 
   const spans = document.querySelectorAll(`.tracos span`);
@@ -75,13 +75,13 @@ function geradorButoes() {
 
   for (let i = 97; i < 123; i++) {
     const btn = document.createElement("button");
-    const letter = String.fromCharCode(i).toUpperCase();
-    btn.textContent = letter;
+    const palavra = String.fromCharCode(i).toUpperCase();
+    btn.textContent = palavra;
 
     btn.onclick = () => {
       btn.disabled = true;
       btn.style.backgroundColor = "gray";
-      verifyLetter(letter);
+      verificarPalavra(palavra);
     };
 
     contentBtns.appendChild(btn);
