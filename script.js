@@ -1,38 +1,42 @@
-const contentBtns = document.querySelector(".btns")
-const divVida = document.querySelector(".vidas")
+const botoes = document.querySelector(".btns")
+const vida = document.querySelector(".vidas")
 const tracos = document.querySelector(".tracos")
-const conteudodicas = document.querySelector(".dica")
-const btnnovo = document.querySelector(".novo")
-btnnovo.onclick = () => comeca()
+const dicas = document.querySelector(".dica")
+const reiniciar = document.querySelector(".novo")
+reiniciar.onclick = () => comeca()
 let vidas
 let Palavra
 let TamanhoPalavras = 4
 
 const palavras4 = [
-  { palavra: "fato", dica: "Algo incontestável" },
-  { palavra: "casa", dica: "Onde pessoas moram" },
-  { palavra: "medo", dica: "Sentimento ou fobia" },
-  { palavra: "tudo", dica: "Contrario de nada" },
-  { palavra: "nada", dica: "Contrario de tudo" },
+  { palavra: "bife", dica: "fica muito bom à parmegiana" },
+  { palavra: "bolo", dica: "Sempre tem em aniversario" },
+  { palavra: "alho", dica: "Espanta vampiro" },
+  { palavra: "coco", dica: "Verde por fora, Branco por dentro e tem uma lagoinha dentro" },
   { palavra: "doce", dica: "Bom pra sobremesa" },
 ];
 
 const palavras5 = [
-   { palavra: "cerne", dica: "Bom pra um churrasco" },
-   { palavra: "amigo", dica: "Sempre está com você" },
-   { palavra: "tempo", dica: "Sempre está correndo" },
-   { palavra: "área", dica: "Um espaço demarcado" },
+   { palavra: "carne", dica: "Bom pra um churrasco" },
+   { palavra: "cacau", dica: "Faz o chocolate" },
+   { palavra: "arroz", dica: "Não pode faltar no almoço" },
+   { palavra: "aveia", dica: "Comida de velho" },
+   { palavra: "amora", dica: "fruta nativa do Brasil que rima com amor" },
 ]
 
 function pegarDica(){
-  if(TamanhoPalavras == 5){
+  console.log(TamanhoPalavras)
+  if(TamanhoPalavras === 5){
+    console.log("5")
     let index = Math.floor(Math.random() * palavras5.length);
     return palavras5[index];
   }else{
+    console.log("4")
     let index = Math.floor(Math.random() * palavras4.length);
     return palavras4[index];
   }
 }
+
 
 function comeca() {
   var quantidadeLetras=prompt("Quantidade de letras: (4 ou 5):");
@@ -42,7 +46,7 @@ function comeca() {
   }
 
   vidas = 6
-  divVida.textContent = "vidas: "+String(vidas)
+  vida.textContent = "vidas: "+String(vidas)
 
   geradorPerguntas()
   geradorButoes()
@@ -66,17 +70,17 @@ function geradorPerguntas() {
 
   })
 
-  conteudodicas.textContent = `Dica: ${dica}`
+  dicas.textContent = `Dica: ${dica}`
 }
 
 function respostaErrada() {
   vidas = vidas-1
-  divVida.textContent ="vidas: "+String(vidas)
+  vida.textContent ="vidas: "+String(vidas)
 
   if (vidas === 0) {
     setTimeout(() => {
-      alert("Perdeu palaavra: "+ Palavra)
-      init()
+      alert("Perdeu! palavra: "+ Palavra)
+      comeca()
     }, 100)
   }
 }
@@ -91,35 +95,36 @@ function verificarPalavra(palavra) {
   })
 
   const spans = document.querySelectorAll(`.tracos span`)
-  const won = !Array.from(spans).find((span) => span.textContent === "_")
+  const ganhou = !Array.from(spans).find((span) => span.textContent === "_")
 
-  if (won) {
+  if (ganhou) {
     setTimeout(() => {
       alert("Ganhou!")
-      init()
+      comeca()
     }, 100)
   }
 }
 
 function geradorButoes() {
-  contentBtns.textContent = ""
+  botoes.textContent = ""
 
   for (let i = 97; i < 123 ;i++) {
-    const btn = document.createElement("button")
+    const botao = document.createElement("button")
     const palavra = String.fromCharCode(i).toUpperCase()
-    btn.textContent = palavra
+    botao.textContent = palavra
 
-    btn.onclick = () => {
-      btn.disabled = true
-      btn.style.backgroundColor = "gray"
+    botao.onclick = () => {
+      botao.disabled = true
+      botao.style.backgroundColor = "gray"
       verificarPalavra(palavra)
     }
 
-    contentBtns.appendChild(btn)
+    botoes.appendChild(botao)
   }
 }
 
 comeca()
+
 
 
 
