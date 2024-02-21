@@ -1,17 +1,46 @@
-import pegarDica from "./palavras.js"
-
 const contentBtns = document.querySelector(".btns")
 const divVida = document.querySelector(".vidas")
 const tracos = document.querySelector(".tracos")
-const img = document.querySelector("img")
 const conteudodicas = document.querySelector(".dica")
 const btnnovo = document.querySelector(".novo")
-btnnovo.onclick = () => init()
+btnnovo.onclick = () => comeca()
 let vidas
 let Palavra
-init()
+let TamanhoPalavras = 4
 
-function init() {
+const palavras4 = [
+  { palavra: "fato", dica: "Algo incontestável" },
+  { palavra: "casa", dica: "Onde pessoas moram" },
+  { palavra: "medo", dica: "Sentimento ou fobia" },
+  { palavra: "tudo", dica: "Contrario de nada" },
+  { palavra: "nada", dica: "Contrario de tudo" },
+  { palavra: "doce", dica: "Bom pra sobremesa" },
+];
+
+const palavras5 = [
+   { palavra: "cerne", dica: "Bom pra um churrasco" },
+   { palavra: "amigo", dica: "Sempre está com você" },
+   { palavra: "tempo", dica: "Sempre está correndo" },
+   { palavra: "área", dica: "Um espaço demarcado" },
+]
+
+function pegarDica(){
+  if(TamanhoPalavras == 5){
+    let index = Math.floor(Math.random() * palavras5.length);
+    return palavras5[index];
+  }else{
+    let index = Math.floor(Math.random() * palavras4.length);
+    return palavras4[index];
+  }
+}
+
+function comeca() {
+  var quantidadeLetras=prompt("Quantidade de letras: (4 ou 5):");
+
+  if(quantidadeLetras == 4 | quantidadeLetras == 5){
+    TamanhoPalavras = parseInt(quantidadeLetras)
+  }
+
   vidas = 6
   divVida.textContent = "vidas: "+String(vidas)
 
@@ -89,3 +118,8 @@ function geradorButoes() {
     contentBtns.appendChild(btn)
   }
 }
+
+comeca()
+
+
+
